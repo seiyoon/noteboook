@@ -53,3 +53,10 @@
   font-weight: 700;
   color: #509df6;
 }
+.signup:hover {
+  border: none;
+  background: none;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f5fa8;
+}
