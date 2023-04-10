@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  background-color: #509df6;
+}
+.logo {
+  margin: 0;
+  padding-left: 20px;
+}
+.logoIcon {
+  width: 150px;
+}
+
+.star {
+  padding-right: 15px;
+}
+.starIcon {
+  width: 30px;
+}
