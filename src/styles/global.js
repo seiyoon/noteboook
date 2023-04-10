@@ -3,20 +3,26 @@ import { reset } from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+
   #root, body,html {
-    width: 100%;
-    height: 100%;
+    max-width: 100vw;
+    min-height: 100vh;
     margin: 0 auto;
     font-size: 62.5%;
-    background-color: #ebf4ff;
+    font-family: 'Inter';
   }
-  
+
   * {
     box-sizing: border-box;
 	}
+
   button:hover {
     cursor: pointer;
   }
+
+  a {
+    text-decoration-line: none;
+  }  
 `;
 
 export default GlobalStyle;

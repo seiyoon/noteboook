@@ -12,3 +12,16 @@ export const InputBox = ({ type, placeholder, onChange }) => {
     </div>
   );
 };
+
+export const InputLine = ({ type, placeholder, onChange }) => {
+  return (
+    <div className="input">
+      <input
+        className="inputline"
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
+    </div>
+  );
+};

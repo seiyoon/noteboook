@@ -27,3 +27,5 @@ export const Header = () => {
     </div>
   );
 };
+
+// star 는 로그인 해야만 보이게 바꾸기!!!

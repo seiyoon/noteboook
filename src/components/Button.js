@@ -10,3 +10,13 @@ export const Button = ({ children, onClick }) => {
     </div>
   );
 };
+
+export const GrayButton = ({ children, onClick }) => {
+  return (
+    <div className="graybutton">
+      <button className="graybuttonbox" onClick={onClick}>
+        {children}
+      </button>
+    </div>
+  );
+};

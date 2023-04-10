@@ -19,3 +19,25 @@
   border: 0.25rem solid #1f5fa8;
   background-color: #1f5fa8;
 }
+
+.graybutton {
+  margin: 0;
+  padding: 0;
+}
+.graybuttonbox {
+  width: 18rem;
+  height: 4.8rem;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  color: white;
+  border: 0.25rem solid #bbbbbb;
+  background-color: #bbbbbb;
+  border-radius: 1rem;
+}
+.graybuttonbox:hover {
+  outline: none;
+  color: white;
+  border: 0.25rem solid #898989;
+  background-color: #898989;
+}
