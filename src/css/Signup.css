@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.signupMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 9rem;
+  margin-bottom: 14rem;
+}
+.signupMain > h3 {
+  margin-bottom: 5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #509df6;
+  letter-spacing: 0.2rem;
+}
+.signupInput {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 7rem;
+}
+.signupInput > h5 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #002b5c;
+}

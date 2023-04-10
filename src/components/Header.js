@@ -10,7 +10,7 @@ export const Header = () => {
         <Link to="/">
           <img
             src={require("../assets/mainLogoWhite.png")}
-            className="logoIcon"
+            className="logo"
             alt="mainLogo"
           />
         </Link>

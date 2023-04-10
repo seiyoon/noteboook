@@ -1,4 +1,4 @@
-.main {
+.loginMain {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +27,6 @@
   margin-top: 1rem;
   margin-bottom: 15rem;
 }
-
 .loginInput > h5 {
   margin-top: 2rem;
   margin-bottom: 0.5rem;
@@ -39,7 +38,7 @@
   margin: 0;
   padding: 0;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 5rem;
 }
 .gotoSignup {
   display: flex;

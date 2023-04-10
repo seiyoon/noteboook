@@ -13,16 +13,9 @@
   display: flex;
   align-items: center;
 }
-
-.logo {
-  margin: 0;
-}
 .logoIcon {
+  margin-left: 1rem;
   width: 6rem;
-}
-
-.mainLogo {
-  margin-left: 1.5rem;
 }
 .mainLogoIcon {
   width: 13rem;
@@ -32,13 +25,12 @@
   display: flex;
   align-items: center;
 }
-.github {
-  margin-right: 1.5rem;
-}
 .githubIcon {
   width: 3.5rem;
 }
 .made > p {
+  margin-left: 1.5rem;
+  margin-right: 2rem;
   font-size: 2rem;
   font-weight: 600;
   color: #002b5c;

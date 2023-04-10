@@ -8,7 +8,7 @@ import { Footer } from "../components/Footer";
 
 const Login = () => {
   return (
-    <div className="main">
+    <div className="loginMain">
       <div className="logo">
         <img
           src={require("../assets/logo.png")}
