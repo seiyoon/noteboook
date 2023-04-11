@@ -23,6 +23,38 @@
   justify-content: end;
   margin-top: 1rem;
 }
+
+.categoryText {
+  width: 50%;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  color: #000;
+  font-size: 1.6rem;
+  border: 0.3rem solid #509df6;
+  border-radius: 0.5rem;
+  letter-spacing: 0.1rem;
+}
+.categoryText:focus {
+  outline: none;
+  border: 0.25rem solid #aed2fb;
+  background-color: #aed2fb;
+}
+.categoryColor {
+  width: 10rem;
+  height: 4rem;
+  margin-top: 0.5rem;
+}
+.categoryAdd {
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  color: #fff;
+  background-color: #509df6;
+  border-radius: 0.5rem;
+}
+
 .subMain {
   width: auto;
   margin-top: 1rem;
