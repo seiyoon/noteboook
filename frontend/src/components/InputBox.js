@@ -1,12 +1,14 @@
 import { useRef } from "react";
 import "../css/InputBox.css";
 
-export const InputBox = ({ type, placeholder, onChange }) => {
+export const InputBox = ({ type, placeholder, onChange, value, name }) => {
   return (
     <div className="input">
       <input
         className="inputbox"
         type={type}
+        value={value}
+        name={name}
         placeholder={placeholder}
         onChange={onChange}
       />
