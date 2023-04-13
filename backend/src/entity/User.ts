@@ -19,7 +19,7 @@ export class User {
     @Column({length: 255})
     password: string;
 
-    @Column({length: 10})
+    @Column({length: 255})
     nickname: string;
 
 

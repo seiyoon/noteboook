@@ -34,7 +34,7 @@ export class AuthController {
     }
 
     static signIn = async (req, res) => {
-        const {email, password, nickname} = req.body;
+        const {email, password} = req.body;
 
         const user = await getConnection().getRepository(User)
             .findOne({where:{email}});
