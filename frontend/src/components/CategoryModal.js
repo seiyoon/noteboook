@@ -1,5 +1,5 @@
-import React from "react";
-import "../css/CategoryModal.css";
+import styled from "styled-components";
+import { COLOR } from "../styles/color";
 
 export const CategoryModal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -7,16 +7,47 @@ export const CategoryModal = (props) => {
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
-    <div className={open ? "openModal modal" : "modal"}>
+    <StModal className={open ? "openModal modal" : "modal"}>
       {open ? (
-        <section>
+        <Modal>
           <header>{header}</header>
-          <p>{props.children}</p>
+          <h5>{props.children}</h5>
           <button className="close" onClick={close}>
             닫기
           </button>
-        </section>
+        </Modal>
       ) : null}
-    </div>
+    </StModal>
   );
 };
+
+const StModal = styled.div``;
+const Modal = styled.div`
+  width: 300px;
+  height: 350px;
+  text-align: center;
+  background-color: ${COLOR.WHITE};
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  padding: 32px 16px 16px 16px;
+  font-size: 20px;
+  font-weight: 500;
+  h5 {
+    margin-top: 20px;
+  }
+  .close {
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    border: none;
+    width: 50px;
+    height: 30px;
+    margin-top: 50px;
+    background-color: ${COLOR.MAIN};
+    color: ${COLOR.WHITE};
+    :hover {
+      background-color: ${COLOR.MEDIUM_GRAY};
+    }
+  }
+`;

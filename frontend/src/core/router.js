@@ -5,7 +5,7 @@ import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Write from "../pages/Write";
-import Edit from "../pages/Edit";
+import Post from "../pages/Post";
 import Profile from "../pages/Profile";
 
 const Router = () => {
@@ -17,8 +17,7 @@ const Router = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/write" element={<Write />} />
-        <Route path="/home/edit" element={<Edit />} />
-        <Route path={"/profile"} element={<Profile />} />
+        <Route path="/home/post" element={<Post />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>

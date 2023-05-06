@@ -18,7 +18,6 @@ const Signup = () => {
   return (
     <StSignup>
       <Header />
-
       <StContent>
         <h3>회원가입</h3>
         <SignupInput>
@@ -52,7 +51,6 @@ const Signup = () => {
           <Button type="submit">시작하기</Button>
         </SignupButton>
       </StContent>
-
       <Footer />
     </StSignup>
   );

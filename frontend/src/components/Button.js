@@ -66,18 +66,18 @@ const StGrayButton = styled.div`
   .graybuttonbox {
     width: 180px;
     height: 48px;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     color: white;
-    border: 2.5px solid #bbbbbb;
-    background-color: #bbbbbb;
+    border: 2.5px solid ${COLOR.DARK_GRAY};
+    background-color: ${COLOR.DARK_GRAY};
     border-radius: 10px;
   }
   .graybuttonbox:hover {
     outline: none;
     color: white;
-    border: 2.5px solid #898989;
-    background-color: #898989;
+    border: 2.5px solid ${COLOR.MEDIUM_GRAY};
+    background-color: ${COLOR.MEDIUM_GRAY};
   }
 `;

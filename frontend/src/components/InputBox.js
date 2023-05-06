@@ -72,6 +72,9 @@ const StInput = styled.div`
     font-size: 16px;
     border: 2.5px solid ${COLOR.MAIN};
     border-radius: 10px;
+    ::placeholder {
+      color: ${COLOR.BLACK};
+    }
   }
   .inputbox:focus {
     outline: none;
@@ -89,11 +92,17 @@ const StInput = styled.div`
     font-weight: 600;
     font-size: 16px;
     border: 0;
-    border-bottom: 3px solid #509df6;
+    border-bottom: 3px solid ${COLOR.MAIN_LIGHT};
+    ::placeholder {
+      color: ${COLOR.DARK_GRAY};
+    }
   }
   .inputline1:focus {
     outline: 0;
-    border-bottom: 3px solid #1e5ca2;
+    border-bottom: 3px solid ${COLOR.MAIN_DARK};
+    ::placeholder {
+      color: ${COLOR.BLACK};
+    }
   }
   .inputline2 {
     padding: 0;
@@ -105,11 +114,20 @@ const StInput = styled.div`
     font-weight: 600;
     font-size: 16px;
     border: 0;
-    border-bottom: 3px solid #509df6;
+    border-bottom: 3px solid ${COLOR.MAIN_LIGHT};
+    ::placeholder {
+      color: ${COLOR.DARK_GRAY};
+    }
+    ${({ theme }) => theme.tablet`
+    margin-top: 10px;
+  `};
   }
   .inputline2:focus {
     outline: 0;
-    border-bottom: 3px solid #1e5ca2;
+    border-bottom: 3px solid ${COLOR.MAIN_DARK};
+    ::placeholder {
+      color: ${COLOR.BLACK};
+    }
   }
   .inputline3 {
     padding-top: 10px;
@@ -123,10 +141,22 @@ const StInput = styled.div`
     font-weight: 600;
     font-size: 16px;
     border: 0;
-    border-top: 3px solid #509df6;
+    border-top: 3px solid ${COLOR.MAIN_LIGHT};
+    ::placeholder {
+      color: ${COLOR.DARK_GRAY};
+    }
+    ${({ theme }) => theme.tablet`
+    width: 720px;
+  `};
+    ${({ theme }) => theme.mobile`
+    width: 450px;
+  `};
   }
   .inputline3:focus {
     outline: 0;
-    border-top: 3px solid #1e5ca2;
+    border-top: 3px solid ${COLOR.MAIN_DARK};
+    ::placeholder {
+      color: ${COLOR.BLACK};
+    }
   }
 `;
