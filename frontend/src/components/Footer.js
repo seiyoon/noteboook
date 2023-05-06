@@ -1,41 +1,88 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import "../css/Footer.css";
+import styled from "styled-components";
+import { COLOR } from "../styles/color";
 
 export const Footer = () => {
   return (
-    <div className="footer">
-      <div className="img">
-        <div className="logo">
+    <StFooter>
+      <FooterImg>
+        <FooterLogo>
           <img
-            src={require("../assets/logo.png")}
+            src={require("../assets/notebook.png")}
             className="logoIcon"
             alt="logo"
           />
-        </div>
-        <div className="mainLogo">
+        </FooterLogo>
+        <FooterTextLogo>
           <img
-            src={require("../assets/mainLogo.png")}
+            src={require("../assets/noteboook-gray.png")}
             className="mainLogoIcon"
             alt="mainLogo"
           />
-        </div>
-      </div>
-      <div className="text">
-        <div className="github">
+        </FooterTextLogo>
+      </FooterImg>
+      <FooterText>
+        <FooterGithub>
           <Link to="https://github.com/seiyoon" target="_blank">
             <img
               src={require("../assets/github.png")}
-              className="githubIcon"
+              className="github"
               alt="github"
             ></img>
           </Link>
-        </div>
-        <div className="made">
-          <p>by.seiyoon</p>
-        </div>
-      </div>
-    </div>
+        </FooterGithub>
+      </FooterText>
+    </StFooter>
   );
 };
+
+const StFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background-color: ${COLOR.GRAY};
+  bottom: 0;
+  padding-left: 3rem;
+  padding-right: 3rem;
+`;
+const FooterImg = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const FooterLogo = styled.div`
+  .logoIcon {
+    margin-left: 40px;
+    width: 60px;
+    ${({ theme }) => theme.mobile`
+      margin-left: 20px;
+      width: 50px;
+    `};
+  }
+`;
+const FooterTextLogo = styled.div`
+  .mainLogoIcon {
+    margin-left: 25px;
+    width: 150px;
+    ${({ theme }) => theme.mobile`
+      margin-left: 15px;
+      width: 120px;
+    `};
+  }
+`;
+const FooterText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const FooterGithub = styled.div`
+  margin-right: 40px;
+  .github {
+    width: 45px;
+    ${({ theme }) => theme.mobile`
+      margin-left: 20px;
+    `};
+  }
+`;

@@ -1,8 +1,8 @@
 import { css } from "styled-components";
 
 const sizes = {
-  mobile: 320,
-  tablet: 768,
+  mobile: 720,
+  tablet: 980,
   laptop: 1024,
 };
 

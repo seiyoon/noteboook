@@ -1,12 +1,17 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 import { COLOR } from "../styles/color";
 
 export const Header = () => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const toggleNav = () => {
+    setToggleMenu(!toggleMenu);
+  };
+
   return (
-    <StHeader>
+    <StHeader toggleMenu={toggleMenu}>
       <Logo>
         <Link to="/">
           <img
@@ -16,19 +21,25 @@ export const Header = () => {
           />
         </Link>
       </Logo>
-      <HeaderText>
-        <div className="login">
-          <Link to="/login">로그인</Link>
-        </div>
-        <div className="signup">
-          <Link to="/signup">회원가입</Link>
-        </div>
+      <HeaderText toggleMenu={toggleMenu}>
+        <Link to="/login">
+          <LoginText>로그인</LoginText>
+        </Link>
+        <Link to="/signup">
+          <SignupText>회원가입</SignupText>
+        </Link>
       </HeaderText>
+      <ToggleBtn onClick={toggleNav}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </ToggleBtn>
     </StHeader>
   );
 };
 
 const StHeader = styled.div`
+  display: flex;
   position: fixed;
   top: 0;
   z-index: 10;
@@ -45,17 +56,86 @@ const StHeader = styled.div`
 `;
 const Logo = styled.div`
   margin: 0 auto;
-  font-weight: 600;
   text-align: center;
 
   .logo {
-    width: 200px;
+    width: 180px;
   }
 
   ${({ theme }) => theme.tablet`
-    padding-bottom: 20px;
-    position: relative;
-    border-bottom: 1px solid #eee;
+    .logo {
+        width: 150px;
+    }     
   `};
 `;
-const HeaderText = styled.div``;
+const HeaderText = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 60px;
+
+  ${({ theme }) => theme.tablet`
+      display: ${(props) => (props.toggleMenu ? "flex" : "none")};
+      flex-direction: column;
+      right: 0;
+      margin-top: 40px;
+  `};
+`;
+const LoginText = styled.div`
+  margin-right: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  color: ${COLOR.WHITE};
+  background-color: ${COLOR.MAIN};
+  padding: 7px 13px;
+  border-radius: 20px;
+  :hover {
+    background-color: ${COLOR.MAIN_HOVER};
+  }
+  ${({ theme }) => theme.tablet`
+      margin-right: ${(props) => (props.toggleMenu ? "0px" : "0px")};
+      right: 0;
+  `};
+`;
+const SignupText = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  color: ${COLOR.MAIN};
+  background-color: ${COLOR.WHITE};
+  padding: 7px 13px;
+  border-radius: 20px;
+  :hover {
+    color: ${COLOR.MAIN_HOVER};
+  }
+  ${({ theme }) => theme.tablet`
+      margin-left: ${(props) => (props.toggleMenu ? "0px" : "0px")};
+      right: 0;
+  `};
+`;
+const ToggleBtn = styled.div`
+  display: none;
+  cursor: pointer;
+
+  span {
+    display: block;
+    width: 20px;
+    height: 3px;
+    margin-bottom: 4px;
+    border-radius: 10px;
+    background-color: ${COLOR.MAIN};
+    transition: all 0.2s ease-in;
+    &:nth-of-type(3) {
+      margin-bottom: 0px;
+    }
+  }
+
+  ${({ theme }) => theme.tablet`
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+  `};
+  ${({ theme }) => theme.mobile`
+    right: 20px;
+  `};
+`;
