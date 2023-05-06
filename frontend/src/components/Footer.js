@@ -42,11 +42,11 @@ const StFooter = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 250px;
+  height: 200px;
   background-color: ${COLOR.GRAY};
   bottom: 0;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 30px;
+  padding-right: 30px;
 `;
 const FooterImg = styled.div`
   display: flex;

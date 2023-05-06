@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/Login.css";
+import { COLOR } from "../styles/color";
+import styled from "styled-components";
 
 import { Header } from "../components/Header";
 import { InputBox } from "../components/InputBox";
@@ -18,26 +19,20 @@ const Login = () => {
   const handleSubmit = () => {};
 
   return (
-    <div className="loginMain">
+    <StLogin>
       <Header />
-
-      <div className="Llogo">
-        <img
-          src={require("../assets/logo.png")}
-          className="logoImg1"
-          alt="logo"
-        />
-        <img
-          src={require("../assets/mainLogo.png")}
-          className="logoImg2"
-          alt="mainLogo"
-        />
-      </div>
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <div className="loginInput">
+      <StContent>
+        <LoginLogo>
+          <img
+            src={require("../assets/mainLogo.png")}
+            className="logoImg1"
+            alt="logo"
+          />
+        </LoginLogo>
+        <LoginInput>
           <h5>이메일</h5>
           <InputBox name="email" variant="outlined" onChange={handleChange} />
-          <div className="error-message"></div>
+
           <h5>비밀번호</h5>
           <InputBox
             name="password"
@@ -45,19 +40,77 @@ const Login = () => {
             variant="outlined"
             onChange={handleChange}
           />
-          <div className="error-message"></div>
-          <div className="loginButton">
-            <Button type="submit">로그인</Button>
-          </div>
-          <div className="gotoSignup">
+
+          <LoginButton>
+            <Link to="/home">
+              <Button type="submit">로그인</Button>
+            </Link>
+          </LoginButton>
+          <GotoSignup>
             <Link to="/signup">
               <button className="signup">회원가입 하기</button>
             </Link>
-          </div>
-        </div>
-      </form>
-      <Footer />
-    </div>
+          </GotoSignup>
+        </LoginInput>
+      </StContent>
+      <Footer className="footer" />
+    </StLogin>
   );
 };
 export default Login;
+
+const StLogin = styled.div``;
+const StContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  font-family: "SUITE-Regular";
+`;
+const LoginLogo = styled.div`
+  margin-top: 40px;
+  .logoImg1 {
+    width: 15rem;
+  }
+`;
+const LoginInput = styled.div`
+  margin-top: 30px;
+  padding: 0;
+  justify-content: center;
+
+  h5 {
+    margin-top: 25px;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: ${COLOR.BLACK};
+  }
+`;
+const LoginButton = styled.div`
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  margin-top: 50px;
+`;
+const GotoSignup = styled.div`
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+  margin-bottom: 65px;
+
+  .signup {
+    border: none;
+    background: none;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "SUITE-Regular";
+    color: ${COLOR.MAIN};
+  }
+  .signup:hover {
+    border: none;
+    background: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: ${COLOR.MAIN_HOVER};
+  }
+`;

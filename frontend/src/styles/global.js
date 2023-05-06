@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
   #root, body,html {
     max-width: 100vw;
-    min-height: 100vh;
+    min-height: 100%;
     margin: 0 auto;
     font-size: 62.5%;
     font-family: 'Inter';

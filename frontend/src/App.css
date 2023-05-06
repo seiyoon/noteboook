@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @font-face {
   font-family: "SUITE-Regular";
   src: url("./styles/fonts/SUITE-Variable-ttf/SUITE-Variable.ttf");
