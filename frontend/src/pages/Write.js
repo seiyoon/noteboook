@@ -1,20 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Write.css";
 
+import "react-toastify/dist/ReactToastify.css";
+
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { Button } from "../components/Button";
+import { Button, DisableButton } from "../components/Button";
 import { InputLine1, InputLine2, InputLine3 } from "../components/InputBox";
 import { GoBackButton } from "../components/GoBackButton";
 
-const Home = () => {
+const Write = () => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [subject, setSubject] = useState("");
+
+  const onTitleHandler = (e) => {
+    setTitle(e.target.value);
+  };
+  const onContentHandler = (e) => {
+    setContent(e.target.value);
+  };
+  const onSubjectHandler = (e) => {
+    setSubject(e.target.value);
+  };
+
   const navigate = useNavigate();
   const [selectedWeek, setSelectedWeek] = useState(null);
 
-  const handleClickSubmit = () => {
-    navigate("/home");
-  };
+  const canSubmit = useCallback(() => {
+    return subject !== "" && content !== "" && title !== "";
+  }, [subject, title, content]);
+
+  const handleClickSubmit = () => {};
 
   const weeks = new Array(16).fill("").map((_, index) => (
     <button
@@ -42,14 +60,22 @@ const Home = () => {
         </div>
         <div className="writeSub">
           <div className="writeFirst">
-            <InputLine1 placeholder="제목" />
-            <InputLine2 placeholder="과목" />
+            <InputLine1 placeholder="제목" onChange={onTitleHandler} />
+            <InputLine2 placeholder="과목" onChange={onSubjectHandler} />
           </div>
           <div className="writeSecond">
-            <InputLine3 placeholder="내용" />
+            <InputLine3 placeholder="내용" onChange={onContentHandler} />
           </div>
           <div className="writeButton">
-            <Button onClick={handleClickSubmit}>등록하기</Button>
+            {canSubmit() ? (
+              <Button onClick={handleClickSubmit} className="success-button">
+                등록하기
+              </Button>
+            ) : (
+              <DisableButton className="disable-button">
+                입력 칸을 모두 채워주세요🥹
+              </DisableButton>
+            )}
           </div>
         </div>
       </div>
@@ -57,4 +83,4 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
+export default Write;

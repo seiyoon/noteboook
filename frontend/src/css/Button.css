@@ -20,6 +20,18 @@
   background-color: #1f5fa8;
 }
 
+.buttonbox2 {
+  width: 40rem;
+  height: 4.8rem;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.3rem;
+  color: #363636;
+  border: 0.25rem solid #b9b9b9;
+  background-color: #b9b9b9;
+  border-radius: 1rem;
+}
+
 .graybutton {
   margin: 0;
   padding: 0;

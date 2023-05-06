@@ -1,5 +1,5 @@
 import "./App.css";
-import Router from "./hooks/router";
+import Router from "./core/router";
 import GlobalStyle from "./styles/global";
 
 const App = () => {

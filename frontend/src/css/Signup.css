@@ -10,12 +10,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 9rem;
+  margin-top: 7rem;
   margin-bottom: 14rem;
 }
 .signupMain > h3 {
-  margin-bottom: 4rem;
-  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #509df6;
   letter-spacing: 0.2rem;

@@ -11,6 +11,16 @@ export const Button = ({ children, onClick, type }) => {
   );
 };
 
+export const DisableButton = ({ children, onClick, type }) => {
+    return (
+        <div className="button">
+            <button className="buttonbox2" onClick={onClick} type={type}>
+                {children}
+            </button>
+        </div>
+    );
+};
+
 export const GrayButton = ({ children, onClick }) => {
   return (
     <div className="graybutton">

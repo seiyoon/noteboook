@@ -41,20 +41,23 @@ export const InputLine2 = ({ type, placeholder, onChange }) => {
   );
 };
 export const InputLine3 = ({ type, placeholder, onChange }) => {
-  const handleResizeText = (obj) => {
-    obj.style.height = "1px";
-    obj.style.height = 12 + obj.scrollHeight + "px";
-  };
+
+    const handleResizeText = (e) => {
+        const element = e.target;
+        element.style.height = "1px";
+        element.style.height = `${12 + element.scrollHeight}px`;
+    };
+
 
   return (
     <div className="input">
       <textarea
         className="inputline3"
-        type={type}
         placeholder={placeholder}
-        onkeydown={handleResizeText}
-        onkeyup={handleResizeText}
+        onKeyDown={handleResizeText}
+        onKeyUp={handleResizeText}
         rows={1}
+        onChange={onChange}
       />
     </div>
   );
