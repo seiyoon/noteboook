@@ -8,7 +8,7 @@ export const Header2 = () => {
   return (
     <StHeader>
       <Logo>
-        <Link to="/">
+        <Link to="/home">
           <img
             src={require("../assets/noteboook.png")}
             className="logo"

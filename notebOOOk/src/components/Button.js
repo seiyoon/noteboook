@@ -38,14 +38,14 @@ const StButton = styled.div`
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 03px;
-    color: white;
+    color: ${COLOR.WHITE};
     border: 2.5px solid ${COLOR.MAIN};
     background-color: ${COLOR.MAIN};
     border-radius: 10px;
   }
   .buttonbox:hover {
     outline: none;
-    color: white;
+    color: ${COLOR.WHITE};
     border: 2.5px solid ${COLOR.MAIN_HOVER};
     background-color: ${COLOR.MAIN_HOVER};
   }
@@ -56,9 +56,9 @@ const StButton = styled.div`
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 3px;
-    color: #363636;
-    border: 0.25px solid #b9b9b9;
-    background-color: #b9b9b9;
+    color: ${COLOR.WHITE};
+    border: 0.25px solid ${COLOR.MEDIUM_GRAY};
+    background-color: ${COLOR.MEDIUM_GRAY};
     border-radius: 10px;
   }
 `;
@@ -69,14 +69,14 @@ const StGrayButton = styled.div`
     font-size: 17px;
     font-weight: 600;
     letter-spacing: 1.5px;
-    color: white;
+    color: ${COLOR.WHITE};
     border: 2.5px solid ${COLOR.DARK_GRAY};
     background-color: ${COLOR.DARK_GRAY};
     border-radius: 10px;
   }
   .graybuttonbox:hover {
     outline: none;
-    color: white;
+    color: ${COLOR.WHITE};
     border: 2.5px solid ${COLOR.MEDIUM_GRAY};
     background-color: ${COLOR.MEDIUM_GRAY};
   }

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { COLOR } from "../styles/color";
 import styled from "styled-components";
@@ -8,12 +8,48 @@ import { Footer } from "../components/Footer";
 import { Button } from "../components/Button";
 import { InputBox } from "../components/InputBox";
 
-const Signup = () => {
-  const navigate = useNavigate();
+export default function Signup() {
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
-  const handleChange = () => {};
+  const handleChangeId = (e) => {
+    setId(e.target.value);
+  };
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  };
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleChangePassword2 = (e) => {
+    setPassword2(e.target.value);
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const post = {
+      id: id,
+      name: name,
+      pw: password,
+      pw2: password2,
+    };
+
+    fetch("http://localhost:3001/signup", {
+      method: "post", // 통신방법
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        setId(json.text);
+        setName(json.text);
+        setPassword(json.text);
+        setPassword2(json.text);
+      });
+  };
 
   return (
     <StSignup>
@@ -21,41 +57,34 @@ const Signup = () => {
       <StContent>
         <h3>회원가입</h3>
         <SignupInput>
-          <h5>이메일</h5>
-          <InputBox name="email" variant="outlined" onChange={handleChange} />
+          <h5>아이디</h5>
+          <InputBox onChange={handleChangeId} name="id" />
 
           <h5>닉네임</h5>
-          <InputBox
-            name="nickname"
-            variant="outlined"
-            onChange={handleChange}
-          />
+          <InputBox onChange={handleChangeName} name="id" />
 
           <h5>비밀번호</h5>
           <InputBox
             name="password"
-            variant="outlined"
             type="password"
-            onChange={handleChange}
+            onChange={handleChangePassword}
           />
 
           <h5>비밀번호 확인</h5>
           <InputBox
             name="password2"
-            variant="outlined"
             type="password"
-            onChange={handleChange}
+            onChange={handleChangePassword2}
           />
         </SignupInput>
         <SignupButton>
-          <Button type="submit">시작하기</Button>
+          <Button onClick={handleSubmit}>시작하기</Button>
         </SignupButton>
       </StContent>
       <Footer />
     </StSignup>
   );
-};
-export default Signup;
+}
 
 const StSignup = styled.div``;
 const StContent = styled.div`

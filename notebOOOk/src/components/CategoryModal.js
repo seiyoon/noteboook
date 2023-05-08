@@ -37,17 +37,14 @@ const Modal = styled.div`
     margin-top: 20px;
   }
   .close {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 600;
     border-radius: 10px;
     border: none;
     width: 50px;
     height: 30px;
     margin-top: 50px;
-    background-color: ${COLOR.MAIN};
-    color: ${COLOR.WHITE};
-    :hover {
-      background-color: ${COLOR.MEDIUM_GRAY};
-    }
+    background-color: ${COLOR.MAIN_LIGHT};
+    color: ${COLOR.BLACK};
   }
 `;

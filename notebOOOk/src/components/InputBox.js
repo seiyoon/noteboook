@@ -133,7 +133,7 @@ const StInput = styled.div`
     padding-top: 10px;
     padding-left: 5px;
     width: 1000px;
-    min-height: 500px;
+    min-height: 450px;
     overflow-y: scroll;
     resize: none;
     letter-spacing: 1px;

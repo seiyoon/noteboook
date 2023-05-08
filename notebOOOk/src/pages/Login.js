@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { COLOR } from "../styles/color";
 import styled from "styled-components";
@@ -8,15 +8,36 @@ import { InputBox } from "../components/InputBox";
 import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 
-// 로그인 성공하면 서버에서 jwt 토큰 받음.
-// 토큰을 redux store에 저장하고 redux-persist 모듈을 사용해
-// local storage나 session storage에도 저장함
-const Login = () => {
-  const navigate = useNavigate();
+export default function Login() {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleChange = () => {};
+  const handleChangeId = (e) => {
+    setId(e.target.value);
+  };
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const post = {
+      id: id,
+      pw: password,
+    };
+
+    fetch("http://localhost:3001/login", {
+      method: "post", // 통신방법
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        setId(json.text);
+        setPassword(json.text);
+      });
+  };
 
   return (
     <StLogin>
@@ -30,21 +51,18 @@ const Login = () => {
           />
         </LoginLogo>
         <LoginInput>
-          <h5>이메일</h5>
-          <InputBox name="email" variant="outlined" onChange={handleChange} />
+          <h5>아이디</h5>
+          <InputBox onChange={handleChangeId} name="id" />
 
           <h5>비밀번호</h5>
           <InputBox
             name="password"
             type="password"
-            variant="outlined"
-            onChange={handleChange}
+            onChange={handleChangePassword}
           />
 
           <LoginButton>
-            <Link to="/home">
-              <Button type="submit">로그인</Button>
-            </Link>
+            <Button onClick={handleSubmit}>로그인</Button>
           </LoginButton>
           <GotoSignup>
             <Link to="/signup">
@@ -56,9 +74,7 @@ const Login = () => {
       <Footer className="footer" />
     </StLogin>
   );
-};
-export default Login;
-
+}
 const StLogin = styled.div``;
 const StContent = styled.div`
   display: flex;

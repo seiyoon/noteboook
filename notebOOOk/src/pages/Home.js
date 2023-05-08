@@ -57,12 +57,14 @@ const Home = () => {
   };
 
   const notes = new Array(10).fill("").map((_, index) => (
-    <Notes>
-      <h3>3주차</h3>
-      <h4>객지분</h4>
-      <h6>express 서버 사용</h6>
-      <p>2023-05-05</p>
-    </Notes>
+    <Link to={`/home/post/${index}`}>
+      <Notes>
+        <h3>3주차</h3>
+        <h4>객지분</h4>
+        <h6>express 서버 사용</h6>
+        <p>2023-05-05</p>
+      </Notes>
+    </Link>
   ));
 
   return (
@@ -195,11 +197,17 @@ const StContent = styled.div`
     border-radius: 5px;
   }
   .categoryAdd {
+    font-size: 15px;
+    font-weight: 600;
     border-radius: 10px;
     border: none;
-    width: 70px;
-    height: 25px;
-    background-color: ${COLOR.LIGHT_GRAY};
+    width: 75px;
+    height: 30px;
+    background-color: ${COLOR.MAIN};
+    color: ${COLOR.WHITE};
+    :hover {
+      background-color: ${COLOR.MAIN_HOVER};
+    }
   }
 `;
 const ContentTitle = styled.div`
@@ -209,7 +217,7 @@ const ContentTitle = styled.div`
   margin-left: 40px;
   margin-bottom: 50px;
   font-size: 25px;
-  font-weight: 500;
+  font-weight: 600;
 `;
 const ContentMain = styled.div`
   width: 100%;
@@ -286,8 +294,8 @@ const Notes = styled.div`
   height: 200px;
   background-color: ${COLOR.WHITE};
   font-size: 2rem;
-  margin-right: 3%;
-  margin-bottom: 3%;
+  margin-right: 30px;
+  margin-bottom: 30px;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   ${({ theme }) => theme.tablet`
@@ -309,6 +317,7 @@ const Notes = styled.div`
     font-weight: 600;
     font-size: 22px;
     letter-spacing: 0.5px;
+    color: ${COLOR.BLACK};
   }
   h6 {
     padding-top: 25px;
@@ -323,5 +332,6 @@ const Notes = styled.div`
     padding-right: 20px;
     font-weight: 500;
     font-size: 15px;
+    color: ${COLOR.BLACK};
   }
 `;

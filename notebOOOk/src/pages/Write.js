@@ -1,10 +1,8 @@
 import React, { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import styled from "styled-components";
 import { COLOR } from "../styles/color";
-
-import "react-toastify/dist/ReactToastify.css";
 
 import { Header2 } from "../components/Header2";
 import { Footer } from "../components/Footer";
@@ -50,12 +48,12 @@ const Write = () => {
     <StWrite>
       <Header2 />
       <StContent>
-        <ContentTitle>| 필기 작성</ContentTitle>
-        <ContentTop>
+        <ContentTitle>
           <GoBack>
             <GoBackButton />
           </GoBack>
-        </ContentTop>
+          | 필기 작성
+        </ContentTitle>
         <ContentMain>
           <Weeks>
             <h4>주차</h4>
@@ -73,12 +71,17 @@ const Write = () => {
             </WriteSecond>
             <WriteButton>
               {canSubmit() ? (
-                <Button onClick={handleClickSubmit} className="success-button">
-                  등록하기
-                </Button>
+                <Link to="/home">
+                  <Button
+                    onClick={handleClickSubmit}
+                    className="success-button"
+                  >
+                    등록하기
+                  </Button>
+                </Link>
               ) : (
                 <DisableButton className="disable-button">
-                  입력 칸을 모두 채워주세요🥹
+                  등록하기
                 </DisableButton>
               )}
             </WriteButton>
@@ -104,30 +107,22 @@ const StContent = styled.div`
 const ContentTitle = styled.div`
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   width: 100%;
-  margin-left: 40px;
   font-size: 25px;
-  font-weight: 500;
-`;
-const ContentTop = styled.div`
-  width: 100%;
-  display: inline;
-  margin-right: 40px;
-  ${({ theme }) => theme.tablet`
-    margin-right: 0px;
-`};
+  font-weight: 600;
 `;
 const GoBack = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  display: inline;
+  margin-left: 20px;
+  margin-right: 20px;
 `;
 const ContentMain = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 5px;
+  margin-top: 20px;
   margin-bottom: 100px;
 `;
 const Weeks = styled.div`
