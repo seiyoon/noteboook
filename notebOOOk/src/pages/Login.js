@@ -8,36 +8,63 @@ import { InputBox } from "../components/InputBox";
 import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 
-export default function Login() {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+import { auth } from "../firebase";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
-  const handleChangeId = (e) => {
-    setId(e.target.value);
+export default function Login() {
+  // 이메일 + 비밀번호
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+    setEmailError(!isValidEmail(e.target.value));
   };
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
+    if (e.target.value.length < 6) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
   };
 
-  const handleSubmit = () => {
-    const post = {
-      id: id,
-      pw: password,
-    };
+  // 이메일 유효성 검사
+  const isValidEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
 
-    fetch("http://localhost:3001/login", {
-      method: "post", // 통신방법
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        setId(json.text);
-        setPassword(json.text);
+  // 이메일 + 비밀번호 로그인
+  const login = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // 구글 로그인
+  const [userData, setUserData] = useState(null);
+
+  function handleGoogleLogin() {
+    const provider = new GoogleAuthProvider(); // provider를 구글로 설정
+    signInWithPopup(auth, provider) // popup을 이용한 signup
+      .then((data) => {
+        setUserData(data.user); // user data 설정
+        console.log(data); // console로 들어온 데이터 표시
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  };
+  }
 
   return (
     <StLogin>
@@ -51,24 +78,42 @@ export default function Login() {
           />
         </LoginLogo>
         <LoginInput>
-          <h5>아이디</h5>
-          <InputBox onChange={handleChangeId} name="id" />
-
+          <h5>이메일</h5>
+          <InputBox onChange={handleChangeEmail} name="id" value={email} />
+          {emailError && (
+            <ErrorMessage>올바른 이메일 형식이 아닙니다</ErrorMessage>
+          )}
           <h5>비밀번호</h5>
           <InputBox
             name="password"
             type="password"
+            value={password}
             onChange={handleChangePassword}
           />
-
+          {passwordError && (
+            <ErrorMessage>비밀번호는 6자리 이상이어야 합니다</ErrorMessage>
+          )}
           <LoginButton>
-            <Button onClick={handleSubmit}>로그인</Button>
+            <Button onClick={login}>로그인</Button>
           </LoginButton>
-          <GotoSignup>
-            <Link to="/signup">
-              <button className="signup">회원가입 하기</button>
-            </Link>
-          </GotoSignup>
+          <GoogleButton>
+            <button className="google" onClick={handleGoogleLogin}>
+              <img
+                src={require("../assets/google.png")}
+                className="google"
+                alt="google"
+              />
+            </button>
+            {userData ? userData.displayName : null}
+            <button
+              onClick={() => {
+                auth.signOut();
+                console.log("로그아웃 합니다");
+              }}
+            >
+              EXIT
+            </button>
+          </GoogleButton>
         </LoginInput>
       </StContent>
       <Footer className="footer" />
@@ -102,31 +147,32 @@ const LoginInput = styled.div`
     color: ${COLOR.BLACK};
   }
 `;
+const ErrorMessage = styled.div`
+  margin-top: 5px;
+  font-size: 14px;
+
+  color: ${COLOR.RED};
+`;
 const LoginButton = styled.div`
   margin: 0;
   padding: 0;
   justify-content: center;
   margin-top: 50px;
 `;
-const GotoSignup = styled.div`
+const GoogleButton = styled.div`
   display: flex;
   justify-content: end;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-bottom: 65px;
 
-  .signup {
+  .google {
+    width: 230px;
     border: none;
-    background: none;
-    font-size: 20px;
-    font-weight: 700;
-    font-family: "SUITE-Regular";
-    color: ${COLOR.MAIN};
-  }
-  .signup:hover {
-    border: none;
-    background: none;
-    font-size: 20px;
-    font-weight: 700;
-    color: ${COLOR.MAIN_HOVER};
+    margin-right: 20px;
+    background-color: ${COLOR.WHITE};
+
+    .google {
+      width: 230px;
+    }
   }
 `;

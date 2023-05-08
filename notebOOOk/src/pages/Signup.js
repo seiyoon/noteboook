@@ -27,29 +27,7 @@ export default function Signup() {
     setPassword2(e.target.value);
   };
 
-  const handleSubmit = () => {
-    const post = {
-      id: id,
-      name: name,
-      pw: password,
-      pw2: password2,
-    };
-
-    fetch("http://localhost:3001/signup", {
-      method: "post", // 통신방법
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        setId(json.text);
-        setName(json.text);
-        setPassword(json.text);
-        setPassword2(json.text);
-      });
-  };
+  const handleSubmit = () => {};
 
   return (
     <StSignup>
@@ -57,7 +35,7 @@ export default function Signup() {
       <StContent>
         <h3>회원가입</h3>
         <SignupInput>
-          <h5>아이디</h5>
+          <h5>이메일</h5>
           <InputBox onChange={handleChangeId} name="id" />
 
           <h5>닉네임</h5>

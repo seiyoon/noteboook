@@ -25,9 +25,6 @@ export const Header = () => {
         <Link to="/login">
           <LoginText>로그인</LoginText>
         </Link>
-        <Link to="/signup">
-          <SignupText>회원가입</SignupText>
-        </Link>
       </HeaderText>
       <ToggleBtn onClick={toggleNav}>
         <span></span>
@@ -72,7 +69,8 @@ const HeaderText = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  right: 60px;
+  right: 20px;
+  margin-top: -3px;
 
   ${({ theme }) => theme.tablet`
       display: ${(props) => (props.toggleMenu ? "flex" : "none")};
@@ -94,21 +92,6 @@ const LoginText = styled.div`
   }
   ${({ theme }) => theme.tablet`
       margin-right: ${(props) => (props.toggleMenu ? "0px" : "0px")};
-      right: 0;
-  `};
-`;
-const SignupText = styled.div`
-  font-size: 20px;
-  font-weight: 700;
-  color: ${COLOR.MAIN};
-  background-color: ${COLOR.WHITE};
-  padding: 7px 13px;
-  border-radius: 20px;
-  :hover {
-    color: ${COLOR.MAIN_HOVER};
-  }
-  ${({ theme }) => theme.tablet`
-      margin-left: ${(props) => (props.toggleMenu ? "0px" : "0px")};
       right: 0;
   `};
 `;

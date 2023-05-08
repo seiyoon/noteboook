@@ -11,4 +11,5 @@ export const COLOR = {
   DARK_GRAY: "#717171",
   MEDIUM_GRAY: "#B9B9B9",
   LIGHT_GRAY: "#EAEAEA",
+  RED: "#FE0055",
 };

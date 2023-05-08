@@ -5,7 +5,7 @@ export const InputBox = ({ type, placeholder, onChange, value, name }) => {
   return (
     <StInput>
       <input
-        className="inputbox"
+        className={`inputbox ${value ? "has-value" : ""}`}
         type={type}
         value={value}
         name={name}
@@ -76,6 +76,7 @@ const StInput = styled.div`
       color: ${COLOR.BLACK};
     }
   }
+  .has-value.inputbox,
   .inputbox:focus {
     outline: none;
     border: 2.5px solid ${COLOR.MAIN_LIGHT};
