@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { COLOR } from "../styles/color";
 
@@ -5,7 +6,29 @@ import { Header2 } from "../components/Header2";
 import { Footer } from "../components/Footer";
 import { GoBackButton } from "../components/GoBackButton";
 
+import { firestore, dbService } from "../firebase.js";
+
 const Post = () => {
+  const [post, setPost] = useState([]);
+
+  const pathname = window.location.pathname;
+  const url = pathname.substring(6);
+
+  useEffect(() => {
+    const bucket = firestore.collection("notebook");
+
+    bucket
+      .doc(url)
+      .get()
+      .then((doc) => {
+        // document의 데이터를 가져옴
+        console.log(doc.data());
+        // document의 id를 가져옴
+        console.log(doc.id);
+        setPost(doc.data());
+      });
+  }, []);
+
   return (
     <StPilgi>
       <Header2 />
@@ -17,10 +40,10 @@ const Post = () => {
           | 필기 조회
         </ContentTitle>
         <ContentMain>
-          <Week>3주차</Week>
-          <Subject>웹클라이언트</Subject>
-          <Title>express 서버 만들어보기</Title>
-          <Content>어쩌구저쩌구 샬라샬라 부앙</Content>
+          <Week>{post.week} 주차</Week>
+          <Subject>{post.subject}</Subject>
+          <Title>{post.title}</Title>
+          <Content>{post.content}</Content>
         </ContentMain>
       </StContent>
       <Footer />
@@ -88,8 +111,8 @@ const Title = styled.div`
   justify-content: center;
   width: 400px;
   height: 38px;
-  margin-top: 30px;
-  color: ${COLOR.DARK_GRAY};
+  margin-top: 20px;
+  color: ${COLOR.BLACK};
   font-size: 20px;
   font-weight: 700;
 `;
@@ -101,7 +124,7 @@ const Subject = styled.div`
   height: 38px;
   margin-top: 30px;
   color: ${COLOR.BLACK};
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 1px;
 `;
