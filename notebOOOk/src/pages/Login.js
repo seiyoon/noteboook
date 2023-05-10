@@ -114,15 +114,6 @@ export default function Login() {
                 alt="google"
               />
             </button>
-            {userData ? userData.displayName : null}
-            <button
-              onClick={() => {
-                auth.signOut();
-                console.log("로그아웃 합니다");
-              }}
-            >
-              EXIT
-            </button>
           </GoogleButton>
         </LoginInput>
       </StContent>

@@ -27,24 +27,6 @@ const Home = () => {
     });
   }, []);
 
-  /*useEffect(() => {
-    // bucket이라는 변수로 firestore의 collection인 bucket에 접근
-    const bucket = firestore.collection("notebook");
-
-    bucket
-      .doc("post")
-      .get()
-      .then((doc) => {
-        doc.forEach((data) => {
-          console.log(data.data());
-        });
-        // document의 데이터를 가져옴
-        console.log(doc.data());
-        console.log(doc.id);
-        setPosts(doc.data());
-      });
-  }, []);*/
-
   console.log("으앙", posts);
 
   const [categories, setCategories] = useState([]);
@@ -91,17 +73,6 @@ const Home = () => {
     setNewCategory("");
     setNewColor("");
   };
-
-  const notes = new Array(5).fill("").map((_, index) => (
-    <Link to={`/home/post/${index}`}>
-      <Notes>
-        <h3>3주차</h3>
-        <h4>웹클라이언트</h4>
-        <h6>express 서버 사용</h6>
-        <p>2023-05-05</p>
-      </Notes>
-    </Link>
-  ));
 
   return (
     <StHome>
@@ -322,61 +293,5 @@ const NoteList = styled.div`
   padding-top: 5px;
   padding-left: 5px;
   overflow: auto;
-  }
-`;
-const Notes = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  height: 200px;
-  background-color: ${COLOR.WHITE};
-  font-size: 2rem;
-  margin-right: 30px;
-  margin-bottom: 30px;
-  border-radius: 0.5rem;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-  ${({ theme }) => theme.tablet`
-  margin-right: 20px;
-  margin-bottom: 20px;
-  `};
-  h3 {
-    width: 100%;
-    text-align: left;
-    margin-top: 15px;
-    margin-left: 40px;
-    font-weight: 700;
-    font-size: 23px;
-    letter-spacing: 1px;
-    color: ${COLOR.MAIN};
-  }
-  h4 {
-    padding-top: 20px;
-    font-weight: 600;
-    font-size: 22px;
-    letter-spacing: 0.5px;
-    color: ${COLOR.BLACK};
-  }
-  h6 {
-    padding-top: 25px;
-    font-weight: 500;
-    font-size: 17px;
-    color: ${COLOR.DARK_GRAY};
-  }
-  p {
-    width: 100%;
-    text-align: right;
-    padding-top: 25px;
-    padding-right: 20px;
-    font-weight: 500;
-    font-size: 15px;
-    color: ${COLOR.BLACK};
-  }
-  .trash {
-    padding-top: 20px;
-    margin-left: 190px;
-    width: 25px;
   }
 `;

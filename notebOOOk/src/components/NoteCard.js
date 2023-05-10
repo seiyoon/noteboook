@@ -19,20 +19,18 @@ export const NoteCard = ({ postObj }) => {
   };
 
   return (
-    <>
-      <Notes>
-        <div onClick={handlePageChange}>
-          <h3>{postObj.week}주차</h3>
-          <h4>{postObj.title}</h4>
-          <h6>{postObj.subject}</h6>
-        </div>
-        <img
-          src={require("../assets/trash.png")}
-          className="trash"
-          onClick={handleDelete}
-        />
-      </Notes>
-    </>
+    <Notes>
+      <div onClick={handlePageChange}>
+        <h3>{postObj.week}주차</h3>
+        <h4>{postObj.title}</h4>
+        <h6>{postObj.subject}</h6>
+      </div>
+      <img
+        src={require("../assets/trash.png")}
+        className="trash"
+        onClick={handleDelete}
+      />
+    </Notes>
   );
 };
 
@@ -50,10 +48,6 @@ const Notes = styled.div`
   margin-bottom: 30px;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-  ${({ theme }) => theme.tablet`
-  margin-right: 20px;
-  margin-bottom: 20px;
-  `};
   h3 {
     margin-top: 20px;
     margin-right: 190px;
