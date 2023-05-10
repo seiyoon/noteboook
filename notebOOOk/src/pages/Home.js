@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
@@ -9,8 +9,44 @@ import { Footer } from "../components/Footer";
 import { GrayButton } from "../components/Button";
 import FloatingButton from "../components/FloatingButton";
 import { CategoryModal } from "../components/CategoryModal";
+import { NoteCard } from "../components/NoteCard";
+
+import { firestore, dbService } from "../firebase.js";
 
 const Home = () => {
+  const [post, setPost] = useState("");
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    dbService.collection("notebook").onSnapshot((snapshot) => {
+      const postArray = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setPosts(postArray);
+    });
+  }, []);
+
+  /*useEffect(() => {
+    // bucket이라는 변수로 firestore의 collection인 bucket에 접근
+    const bucket = firestore.collection("notebook");
+
+    bucket
+      .doc("post")
+      .get()
+      .then((doc) => {
+        doc.forEach((data) => {
+          console.log(data.data());
+        });
+        // document의 데이터를 가져옴
+        console.log(doc.data());
+        console.log(doc.id);
+        setPosts(doc.data());
+      });
+  }, []);*/
+
+  console.log("으앙", posts);
+
   const [categories, setCategories] = useState([]);
   const [showModal, setShowModal] = useState(false); // 모달창 열림 여부
   const [newCategory, setNewCategory] = useState(""); // 새로 추가할 카테고리 이름
@@ -56,11 +92,11 @@ const Home = () => {
     setNewColor("");
   };
 
-  const notes = new Array(10).fill("").map((_, index) => (
+  const notes = new Array(5).fill("").map((_, index) => (
     <Link to={`/home/post/${index}`}>
       <Notes>
         <h3>3주차</h3>
-        <h4>객지분</h4>
+        <h4>웹클라이언트</h4>
         <h6>express 서버 사용</h6>
         <p>2023-05-05</p>
       </Notes>
@@ -129,7 +165,11 @@ const Home = () => {
               </GrayButton>
             </CategoryButton>
           </NoteCategory>
-          <NoteList>{notes}</NoteList>
+          <NoteList>
+            {posts.map((post) => (
+              <NoteCard key={post.id} postObj={post} />
+            ))}
+          </NoteList>
         </ContentMain>
       </StContent>
       <Footer />
@@ -305,7 +345,7 @@ const Notes = styled.div`
   h3 {
     width: 100%;
     text-align: left;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-left: 40px;
     font-weight: 700;
     font-size: 23px;
@@ -333,5 +373,10 @@ const Notes = styled.div`
     font-weight: 500;
     font-size: 15px;
     color: ${COLOR.BLACK};
+  }
+  .trash {
+    padding-top: 20px;
+    margin-left: 190px;
+    width: 25px;
   }
 `;

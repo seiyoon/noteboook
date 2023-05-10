@@ -7,14 +7,24 @@ import { COLOR } from "../styles/color";
 import { Header2 } from "../components/Header2";
 import { Footer } from "../components/Footer";
 import { Button, DisableButton } from "../components/Button";
-import { InputLine1, InputLine2, InputLine3 } from "../components/InputBox";
+import {
+  InputLine1,
+  InputLine2,
+  InputLine3,
+  InputLine4,
+} from "../components/InputBox";
 import { GoBackButton } from "../components/GoBackButton";
+import { firestore } from "../firebase";
 
 const Write = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [subject, setSubject] = useState("");
+  const [week, setWeek] = useState("");
 
+  const onWeekHandler = (e) => {
+    setWeek(e.target.value);
+  };
   const onTitleHandler = (e) => {
     setTitle(e.target.value);
   };
@@ -26,23 +36,24 @@ const Write = () => {
   };
 
   const navigate = useNavigate();
-  const [selectedWeek, setSelectedWeek] = useState(null);
 
   const canSubmit = useCallback(() => {
     return subject !== "" && content !== "" && title !== "";
   }, [subject, title, content]);
 
-  const handleClickSubmit = () => {};
-
-  const weeks = new Array(16).fill("").map((_, index) => (
-    <button
-      className={`week ${selectedWeek === index + 1 ? "selected" : ""}`}
-      key={index}
-      onClick={() => setSelectedWeek(index + 1)}
-    >
-      {index + 1}
-    </button>
-  ));
+  const handleClickSubmit = () => {
+    const bucket = firestore.collection("notebook");
+    bucket
+      .add({
+        title: title,
+        content: content,
+        subject: subject,
+        week: week,
+      })
+      .then((docRef) => {
+        console.log(docRef.id);
+      });
+  };
 
   return (
     <StWrite>
@@ -56,9 +67,8 @@ const Write = () => {
         </ContentTitle>
         <ContentMain>
           <Weeks>
+            <InputLine4 placeholder="몇" onChange={onWeekHandler} />
             <h4>주차</h4>
-            <div className="weeksbtn">{weeks}</div>
-            <div className="weeksButton"></div>
           </Weeks>
           <WriteForm>
             <WriteFirst>

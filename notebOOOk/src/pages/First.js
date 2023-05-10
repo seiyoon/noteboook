@@ -1,24 +1,9 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  Animator,
-  ScrollContainer,
-  ScrollPage,
-  batch,
-  Fade,
-  FadeIn,
-  FadeOut,
-  Move,
-  MoveIn,
-  MoveOut,
-  Sticky,
-  StickyIn,
-  StickyOut,
-  Zoom,
-  ZoomIn,
-  ZoomOut,
-} from "react-scroll-motion";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+import Zoom from "react-reveal/Zoom";
+import Fade from "react-reveal/Fade";
 
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -37,8 +22,12 @@ const First = () => {
         </FirstBanner>
 
         <SecondBanner>
-          <h3>왜 noteboook 서비스를 기획했나요?</h3>
+          <Zoom top duration={1500}>
+            <h3>왜 noteboook 서비스를 기획했나요?</h3>
+          </Zoom>
+
           <Graph src={require("../assets/graph.png")} className="graph" />
+
           <h6>
             대학생 33명을 대상으로 조사를 해본 결과, <br />
             학교에 갈 때 노트북을 들고 다니는 학생과 태블릿을 가지고 다니는
@@ -47,8 +36,11 @@ const First = () => {
             알았습니다.
           </h6>
         </SecondBanner>
+
         <ThirdBanner>
-          <h3>필기를 하기 위해 태블릿을 따로 챙겨요</h3>
+          <Fade left duration={1500}>
+            <h3>필기를 하기 위해 태블릿을 따로 챙겨요</h3>
+          </Fade>
           <h4>왜 태블릿으로 필기를 해야하나요? 노트북으로는 할 수 없나요?</h4>
           <h5>
             노트북으로도 간편하게 수업 내용을 필기할 수 있는 서비스가 있다면
@@ -56,7 +48,10 @@ const First = () => {
             굳이 태블릿을 챙기지 않아도 노트북만으로 모든 걸 해결할 수 있지
             않을까 라는 생각해서 나왔습니다
           </h5>
-          <h1>우리의 가벼운 학교 생활을 위한 첫 걸음,</h1>
+          <Fade right duration={3000}>
+            <h1>우리의 가벼운 학교 생활을 위한 첫 걸음,</h1>
+          </Fade>
+
           <Logo
             src={require("../assets/noteboook_dark.png")}
             className="logo"
@@ -81,7 +76,7 @@ const StContent = styled.div`
 `;
 const FirstBanner = styled.div`
   width: 100%;
-  height: 600px;
+  height: 700px;
   .banner1 {
     width: 100%;
   }
@@ -91,6 +86,8 @@ const FirstBanner = styled.div`
 `;
 const Banner1 = styled.img``;
 const SecondBanner = styled.div`
+  animation: animations.popIn;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,7 +106,7 @@ const SecondBanner = styled.div`
   h3 {
     margin-top: 70px;
     font-family: "SUITE-Regular";
-    font-size: 35px;
+    font-size: 38px;
     font-weight: 900;
     color: ${COLOR.MAIN_DARK};
     ${({ theme }) => theme.tablet`
@@ -144,6 +141,7 @@ const ThirdBanner = styled.div`
   padding-right: 60px;
   background-color: ${COLOR.MAIN_LIGHT};
   font-family: "SUITE-Regular";
+
   h3 {
     font-size: 35px;
     font-weight: 700;

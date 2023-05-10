@@ -43,7 +43,7 @@ const StHeader = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 
   ${({ theme }) => theme.tablet`
-  height: ${(props) => (props.toggleMenu ? "auto" : "60px")};
+  height: ${(props) => (props.toggleMenu ? "auto" : "70px")};
   padding: 20px 0;
 `};
 `;

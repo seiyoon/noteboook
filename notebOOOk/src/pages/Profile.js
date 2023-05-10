@@ -20,8 +20,6 @@ const Profile = () => {
           <ProfileList>
             <Boxes>
               <h3>내 정보</h3>
-              <h4>세세</h4>
-              <h5>sese1@naver.com</h5>
             </Boxes>
             <Boxes>
               <h3>요금제</h3>
@@ -34,7 +32,6 @@ const Profile = () => {
             <Boxes>
               <h3>설정</h3>
               <h4>다크모드</h4>
-              <p>2023-05-05</p>
             </Boxes>
           </ProfileList>
         </ContentMain>

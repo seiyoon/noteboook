@@ -12,6 +12,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Inter';
   }
 
+  html {
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.color};
+  }
+
   * {
     box-sizing: border-box;
 	}

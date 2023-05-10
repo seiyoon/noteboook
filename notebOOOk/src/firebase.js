@@ -1,8 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getDatabase } from "firebase/database";
+import "firebase/firestore";
 
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+
+// firebase 설정과 관련된 개인 정보
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -12,6 +15,14 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
+// firebaseConfig 정보로 firebase 시작
+firebase.initializeApp(firebaseConfig);
+
+// firebase의 firestore 인스턴스를 변수에 저장
+const firestore = firebase.firestore();
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export { app, auth };
+const dbService = firebase.firestore();
+
+export { app, auth, firestore, dbService };

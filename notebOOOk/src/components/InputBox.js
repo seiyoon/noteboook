@@ -60,6 +60,18 @@ export const InputLine3 = ({ type, placeholder, onChange }) => {
     </StInput>
   );
 };
+export const InputLine4 = ({ type, placeholder, onChange }) => {
+  return (
+    <StInput>
+      <input
+        className="inputline4"
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
+    </StInput>
+  );
+};
 
 const StInput = styled.div`
   .inputbox {
@@ -160,4 +172,23 @@ const StInput = styled.div`
       color: ${COLOR.BLACK};
     }
   }
+  .inputline4 {
+    margin-right: 10px;
+    padding-left: 18px;
+    width: 50px;
+    min-height: 50px;
+    overflow-y: scroll;
+    resize: none;
+    letter-spacing: 1px;
+    font-family: "SUITE-Regular";
+    font-weight: 600;
+    font-size: 20px;
+    border: 0;
+    border-radius: 15px;
+  }
+  .inputline4:focus {
+    outline: 0;
+    ::placeholder {
+      color: ${COLOR.BLACK};
+    }
 `;

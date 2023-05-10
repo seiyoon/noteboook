@@ -12,15 +12,19 @@ import { auth } from "../firebase";
 import {
   GoogleAuthProvider,
   signInWithPopup,
-  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   // 이메일 + 비밀번호
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [newAccount, setNewAccount] = useState(true); // 새로운 유저인지 확인
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -43,12 +47,17 @@ export default function Login() {
 
   // 이메일 + 비밀번호 로그인
   const login = async () => {
-    try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
-    } catch (error) {
-      console.log(error.message);
-    }
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        navigate("/home");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // 구글 로그인
@@ -60,6 +69,7 @@ export default function Login() {
       .then((data) => {
         setUserData(data.user); // user data 설정
         console.log(data); // console로 들어온 데이터 표시
+        navigate("/home");
       })
       .catch((err) => {
         console.log(err);
